@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'ranked-model'
+gem 'jquery-ui-rails'
 group :development, :test do
   gem 'byebug', platform: :mri
 end

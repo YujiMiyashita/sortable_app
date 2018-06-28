@@ -51,6 +51,12 @@ class FruitsController < ApplicationController
     end
   end
 
+  def sort
+    fruit = Fruit.find(params[:fruit_id])
+    fruit.update(fruit_params)
+    head :ok
+  end
+
   # DELETE /fruits/1
   # DELETE /fruits/1.json
   def destroy
@@ -69,6 +75,6 @@ class FruitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fruit_params
-      params.require(:fruit).permit(:name)
+      params.require(:fruit).permit(:name, :row_order_position)
     end
 end
