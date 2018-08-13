@@ -1,5 +1,5 @@
 class AddRowOrderToFruits < ActiveRecord::Migration[5.0]
   def change
-    add_column :fruits, :row_order, :integer
+    add_column :fruits, :position, :integer
   end
 end

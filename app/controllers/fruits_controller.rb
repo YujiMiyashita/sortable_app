@@ -4,7 +4,7 @@ class FruitsController < ApplicationController
   # GET /fruits
   # GET /fruits.json
   def index
-    @fruits = Fruit.rank(:row_order)
+    @fruits = Fruit.order(position: :asc)
   end
 
   # GET /fruits/1
@@ -53,7 +53,7 @@ class FruitsController < ApplicationController
 
   def sort
     fruit = Fruit.find(params[:fruit_id])
-    fruit.update(fruit_params)
+    fruit.insert_at(params[:fruit][:position].to_i + 1)
     head :ok
   end
 
@@ -68,13 +68,13 @@ class FruitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fruit
-      @fruit = Fruit.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fruit
+    @fruit = Fruit.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def fruit_params
-      params.require(:fruit).permit(:name, :row_order_position)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def fruit_params
+    params.require(:fruit).permit(:name, :position)
+  end
 end
